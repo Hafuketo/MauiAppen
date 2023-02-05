@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MauiAppen.MainPage">
+             x:Class="MauiAppen.MainPage"
+             Padding="{OnPlatform iOS='0,20,0,0'}"
+             BackgroundColor="#191919"
+             >
 
-    <ScrollView>
+    <ContentPage.Resources>
+        
+        <!-- Make all buttons use the same style unless specified -->
+        <ResourceDictionary>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="GhostWhite" />
+                <Setter Property="FontSize" Value="36" />
+                <Setter Property="CornerRadius" Value="0" />
+            </Style>
+        </ResourceDictionary>
+        
+        <!-- Colors for different calculator buttons -->
+        <Color x:Key="NumCol">#303030</Color>
+        <Color x:Key="EqualCol">#F2B705</Color>
+        <Color x:Key="AdvCol">#A7A8A7</Color>
+        <Color x:Key="funcCol">#5D493C</Color>
+        
+    </ContentPage.Resources>
+    
+<!--    <ScrollView>
         <VerticalStackLayout
             Spacing="25"
             Padding="30,0"
@@ -47,7 +69,93 @@
                     Text="Ange ålder"
                     x:Name="EntryAge" />
 
+            <Button
+                x:Name="NumOne"
+                Text="1"
+                SemanticProperties.Hint="Number 1 on calculator"
+                Clicked="NumberEntry"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="NumTwo"
+                Text="2"
+                SemanticProperties.Hint="Number 2 on calculator"
+                Clicked="NumberEntry"
+                HorizontalOptions="Center" />
+
+            <Label Text="NumberDisplay"
+                       FontSize="18"
+                       x:Name="NumberLabel"
+                       HorizontalOptions="Center"
+                       />
+
         </VerticalStackLayout>
-    </ScrollView>
+    </ScrollView> -->
+
+    <Grid
+        Padding="5,0"
+        ColumnSpacing="1"
+        RowSpacing="1">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+
+        <Label 
+            x:Name="result"
+            Grid.ColumnSpan="4"
+            BackgroundColor="GreenYellow"
+            FontAttributes="Bold"
+            FontSize="48"
+            HorizontalTextAlignment="End"
+            LineBreakMode="NoWrap"
+            Text="0"
+            TextColor="ForestGreen"
+            VerticalTextAlignment="Center"
+            />
+
+        <!-- Top row -->
+        <Button Grid.Row="1"
+                Grid.ColumnSpan="2"
+                BackgroundColor="{DynamicResource AdvCol}"
+                Clicked="OnClear"
+                Text="C" />
+
+        <Button Grid.Row="1"
+                Grid.Column="2"
+                BackgroundColor="{DynamicResource EqualCol}"
+                Clicked="OnClear"
+                Text="C" />
+
+        <Button Grid.Row="1"
+                Grid.Column="3"
+                BackgroundColor="{DynamicResource funcCol}"
+                Clicked="OnExponent"
+                Text="n2" />
+        
+        
+        <!-- Numbers -->
+
+        <Button Grid.Row="2"
+                Grid.Column="0"
+                BackgroundColor="{DynamicResource NumCol}"
+                CornerRadius="0"
+                Clicked="OnNumSelect"
+                Text="7" />
+
+    </Grid>
 
 </ContentPage>

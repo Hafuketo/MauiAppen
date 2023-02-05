@@ -23,6 +23,7 @@ public partial class MainPage : ContentPage
 
 		//Navigation.PushAsync(new ContentPageDemo());
 
+		/*
 		string name = EntryName.Text;
 		string ald = EntryAge.Text;
 
@@ -34,6 +35,28 @@ public partial class MainPage : ContentPage
 		{
 			PersonLabel.Text = "Det gick fel i castningen från string till int";
 		}
+		*/
+    }
+
+	// Clears the calculation
+    void OnClear(object sender, EventArgs e)
+    {
+        /*string num = "123";
+
+        NumberClass numberclass1 = new NumberClass { Num = num };
+        NumberLabel.Text = $"Du klickade på siffran {numberclass1.Num}.";*/
+    }
+
+	// Exponentiation of number^x
+    void OnExponent(object sender, EventArgs e)
+    {
+       
+    }
+
+    // Number selecteted
+    void OnNumSelect(object sender, EventArgs e)
+    {
+
     }
 }
 
