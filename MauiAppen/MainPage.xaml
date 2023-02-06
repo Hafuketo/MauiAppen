@@ -3,100 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppen.MainPage"
              Padding="{OnPlatform iOS='0,20,0,0'}"
-             BackgroundColor="#191919"
+             BackgroundColor="#fff"
              >
 
     <ContentPage.Resources>
         
-        <!-- Make all buttons use the same style unless specified -->
-        <ResourceDictionary>
-            <Style TargetType="Button">
-                <Setter Property="TextColor" Value="GhostWhite" />
-                <Setter Property="FontSize" Value="36" />
-                <Setter Property="CornerRadius" Value="0" />
-            </Style>
-        </ResourceDictionary>
+        
         
         <!-- Colors for different calculator buttons -->
         <Color x:Key="NumCol">#303030</Color>
         <Color x:Key="EqualCol">#F2B705</Color>
         <Color x:Key="AdvCol">#A7A8A7</Color>
-        <Color x:Key="funcCol">#5D493C</Color>
+        <Color x:Key="FuncCol">#5D493C</Color>
         
     </ContentPage.Resources>
-    
-<!--    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-            <Label Text="Person"
-                       FontSize="18"
-                       x:Name="PersonLabel"
-                       HorizontalOptions="Center"
-                       />
-            <Entry
-                    Text="Ange namn"
-                    x:Name="EntryName" />
-            <Entry
-                    Text="Ange ålder"
-                    x:Name="EntryAge" />
-
-            <Button
-                x:Name="NumOne"
-                Text="1"
-                SemanticProperties.Hint="Number 1 on calculator"
-                Clicked="NumberEntry"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="NumTwo"
-                Text="2"
-                SemanticProperties.Hint="Number 2 on calculator"
-                Clicked="NumberEntry"
-                HorizontalOptions="Center" />
-
-            <Label Text="NumberDisplay"
-                       FontSize="18"
-                       x:Name="NumberLabel"
-                       HorizontalOptions="Center"
-                       />
-
-        </VerticalStackLayout>
-    </ScrollView> -->
 
     <Grid
-        Padding="5,0"
-        ColumnSpacing="1"
-        RowSpacing="1">
-
+        BackgroundColor="#191919"
+        MaximumWidthRequest="330"
+        >
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -107,55 +32,163 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
+            <ColumnDefinition Width="80" />
         </Grid.ColumnDefinitions>
 
-
+        <!-- Shows calculation -->
         <Label 
-            x:Name="result"
-            Grid.ColumnSpan="4"
-            BackgroundColor="GreenYellow"
+            x:Name="opchoice"
+            Grid.ColumnSpan="2"
+            BackgroundColor="#B1F049"
+            TextColor="#004400"
             FontAttributes="Bold"
-            FontSize="48"
-            HorizontalTextAlignment="End"
-            LineBreakMode="NoWrap"
-            Text="0"
-            TextColor="ForestGreen"
+            FontSize="24"
+            HorizontalTextAlignment="Start"
             VerticalTextAlignment="Center"
+            Padding="0"
+            Text="Hello"
             />
 
-        <!-- Top row -->
+        <!-- Shows answer / chosen number -->
+        <Label 
+            x:Name="result"
+            Grid.Column="2"
+            Grid.ColumnSpan="2"
+            BackgroundColor="#B1F049"
+            TextColor="#004400"
+            FontAttributes="Bold"
+            FontSize="40"
+            HorizontalTextAlignment="End"
+            VerticalTextAlignment="Center"
+            Padding="0"
+            Text="0"
+            />
+
+
+        <!-- √, x², % -->
+        
         <Button Grid.Row="1"
-                Grid.ColumnSpan="2"
                 BackgroundColor="{DynamicResource AdvCol}"
-                Clicked="OnClear"
-                Text="C" />
+                Clicked="Squareroot"
+                Text="√" />
+
+        <Button Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="{DynamicResource AdvCol}"
+                Clicked="OnExponent"
+                Text="x²" />
 
         <Button Grid.Row="1"
                 Grid.Column="2"
-                BackgroundColor="{DynamicResource EqualCol}"
-                Clicked="OnClear"
-                Text="C" />
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnOpSelect"
+                Text="%" />
 
-        <Button Grid.Row="1"
-                Grid.Column="3"
-                BackgroundColor="{DynamicResource funcCol}"
-                Clicked="OnExponent"
-                Text="n2" />
-        
-        
         <!-- Numbers -->
-
+        <!-- 7, 8, 9 -->
         <Button Grid.Row="2"
                 Grid.Column="0"
                 BackgroundColor="{DynamicResource NumCol}"
-                CornerRadius="0"
                 Clicked="OnNumSelect"
                 Text="7" />
+        <Button Grid.Row="2"
+                Grid.Column="1"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="8" />
+        <Button Grid.Row="2"
+                Grid.Column="2"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="9" />
 
+        <!-- 4, 5, 6 -->
+        <Button Grid.Row="3"
+                Grid.Column="0"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="4" />
+        <Button Grid.Row="3"
+                Grid.Column="1"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="5" />
+        <Button Grid.Row="3"
+                Grid.Column="2"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="6" />
+
+        <!-- 1, 2, 3 -->
+        <Button Grid.Row="4"
+                Grid.Column="0"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="1" />
+        <Button Grid.Row="4"
+                Grid.Column="1"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="2" />
+        <Button Grid.Row="4"
+                Grid.Column="2"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="3" />
+
+        <!-- ?, 0, ,. -->
+        <Button Grid.Row="5"
+                Grid.Column="0"
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnClear"
+                Text="C" />
+
+        <Button Grid.Row="5"
+                Grid.Column="1"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="0" />
+
+
+        <Button Grid.Row="5"
+                Grid.Column="2"
+                BackgroundColor="{DynamicResource NumCol}"
+                Clicked="OnNumSelect"
+                Text="," />
+
+        <!-- ÷, ×, −, +, = -->
+        <Button Grid.Row="1"
+                Grid.Column="4"
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnOpSelect"
+                Text="÷" />
+
+        <Button Grid.Row="2"
+                Grid.Column="4"
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnOpSelect"
+                Text="×" />
+
+        <Button Grid.Row="3"
+                Grid.Column="4"
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnOpSelect"
+                Text="-" />
+
+        <Button Grid.Row="4"
+                Grid.Column="4"
+                BackgroundColor="{DynamicResource FuncCol}"
+                Clicked="OnOpSelect"
+                Text="+" />
+
+        <Button Grid.Row="5"
+                Grid.Column="4"
+                BackgroundColor="{DynamicResource EqualCol}"
+                Clicked="Calculate"
+                Text="=" />
     </Grid>
 
 </ContentPage>

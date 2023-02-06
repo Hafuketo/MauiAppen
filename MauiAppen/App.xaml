@@ -8,6 +8,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <!-- Make all buttons use the same style unless specified -->
+                <ResourceDictionary>
+                    <Style TargetType="Button">
+                        <Setter Property="TextColor" Value="GhostWhite" />
+                        <Setter Property="FontSize" Value="36" />
+                        <Setter Property="CornerRadius" Value="33" />
+                        <Setter Property="Margin" Value="10" />
+                    </Style>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
